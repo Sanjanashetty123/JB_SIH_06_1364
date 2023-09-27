@@ -1,0 +1,64 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Profile Detection</title>
+</head>
+<body>
+    <h1>Fake Profile Detection</h1>
+    <form action="/detect" method="post">
+        <label for="profile_name">Profile Name:</label>
+        <input type="text" id="profile_name" name="profile_name" required><br>
+
+        <label for="profile_picture">Profile Picture URL:</label>
+        <input type="text" id="profile_picture" name="profile_picture" required><br>
+
+        <label for="friends_count">Friends Count:</label>
+        <input type="number" id="friends_count" name="friends_count" required><br>
+
+        <!-- Add more input fields as needed -->
+
+        <input type="submit" value="Detect Fake Profile">
+    </form>
+</body>
+</html>
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(_name_)
+
+# You would implement your fake profile detection model here
+# Replace this with your actual detection code
+def detect_fake_profile(profile_name, profile_picture, friends_count):
+    # Implement your detection logic here
+    # Return 'Fake' or 'Real' based on the model's prediction
+    return 'Fake'
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/detect', methods=['POST'])
+def predict():
+    profile_name = request.form['profile_name']
+    profile_picture = request.form['profile_picture']
+    friends_count = int(request.form['friends_count'])
+
+    # Perform fake profile detection
+    prediction = detect_fake_profile(profile_name, profile_picture, friends_count)
+
+    return render_template('result.html', prediction_text=prediction)
+
+if _name_ == '_main_':
+    app.run(debug=True)
+    html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Profile Detection Result</title>
+</head>
+<body>
+    <h1>Fake Profile Detection Result</h1>
+    <p>The profile is: <strong>{{ prediction_text }}</strong></p>
+    <a href="/">Back to Input</a>
+</body>
+</html>
