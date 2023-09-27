@@ -1,0 +1,258 @@
+1 
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+if __name__ == '__main__':
+    app.run(debug=True) 
+2
+
+from flask import Flask,request,jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect',methods=['POST'])
+def detect():
+    nums_length_username = request.form.get('nums_length_username')
+    fullname_words = request.form.get('fullname_words')
+    nums_length_fullname = request.form.get('nums_length_fullname')
+    name_equals_username = request.form.get('name_equals_username')
+    description_length = request.form.get('description_length')
+    external_URL = request.form.get('external_URL')
+    private = request.form.get('private')
+    posts = request.form.get('posts')
+    followers = request.form.get('followers')
+
+    result = {
+        'nums_length_username': nums_length_username,
+        'fullname_words': fullname_words,
+        'nums_length_fullname': nums_length_fullname,
+        'name_equals_username': name_equals_username,
+        'description_length': description_length,
+        'external_URL': external_URL,
+        'private': private,
+        'posts': posts,
+        'followers': followers
+    }
+
+    return jsonify(result)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+3
+from flask import Flask,request,jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect',methods=['POST'])
+def detect():
+    nums_length_username = request.form.get('nums_length_username')
+    fullname_words = request.form.get('fullname_words')
+    nums_length_fullname = request.form.get('nums_length_fullname')
+    name_equals_username = request.form.get('name_equals_username')
+    description_length = request.form.get('description_length')
+    external_URL = request.form.get('external_URL')
+    private = request.form.get('private')
+    posts = request.form.get('posts')
+    followers = request.form.get('followers')
+
+    input_query = np.array([[nums_length_username,fullname_words,nums_length_fullname,name_equals_username,description_length,external_URL,private,posts,followers]])
+
+    result = model.detect(input_query)[0]
+
+    if result == 1:
+        return jsonify({'profile_pic':result})
+
+    return jsonify(result)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+4
+model not found error code:
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect', methods=['POST'])
+def detect():
+    try:
+        # Load the machine learning model
+        model = pickle.load(open('model.pickle', 'rb'))  # Make sure 'model.pickle' is in the same directory as your script
+
+        # Get input data from the request
+        nums_length_username = float(request.form.get('nums_length_username'))
+        fullname_words = float(request.form.get('fullname_words'))
+        nums_length_fullname = float(request.form.get('nums_length_fullname'))
+        name_equals_username = float(request.form.get('name_equals_username'))
+        description_length = float(request.form.get('description_length'))
+        external_URL = float(request.form.get('external_URL'))
+        private = float(request.form.get('private'))
+        posts = float(request.form.get('posts'))
+        followers = float(request.form.get('followers'))
+
+        input_query = np.array([[nums_length_username, fullname_words, nums_length_fullname, name_equals_username, description_length, external_URL, private, posts, followers]])
+
+        result = model.predict(input_query)[0]
+
+        if result == 1:
+            return jsonify({'profile_pic': result})
+
+        return jsonify({'result': result})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect', methods=['POST'])
+def detect():
+    try:
+        # Load the machine learning model
+        model = pickle.load(open('model.pickle', 'rb'))  # Make sure 'model.pickle' is in the same directory as your script
+
+        # Get input data from the request
+        nums_length_username = float(request.form.get('nums_length_username'))
+        fullname_words = float(request.form.get('fullname_words'))
+        nums_length_fullname = float(request.form.get('nums_length_fullname'))
+        name_equals_username = float(request.form.get('name_equals_username'))
+        description_length = float(request.form.get('description_length'))
+        external_URL = float(request.form.get('external_URL'))
+        private = float(request.form.get('private'))
+        posts = float(request.form.get('posts'))
+        followers = float(request.form.get('followers'))
+
+        input_query = np.array([[nums_length_username, fullname_words, nums_length_fullname, name_equals_username, description_length, external_URL, private, posts, followers]])
+
+        result = model.predict(input_query)[0]
+
+        if result == 1:
+            return jsonify({'profile_pic': result})
+
+        return jsonify({'result': result})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+5
+ran out of input code:
+
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect', methods=['POST'])
+def detect():
+    try:
+        # Load the machine learning model
+        model = pickle.load(open('model.pickle', 'rb'))  # Make sure 'model.pickle' is in the same directory as your script
+
+        # Get input data from the request
+        nums_length_username = float(request.form.get('nums_length_username'))
+        fullname_words = float(request.form.get('fullname_words'))
+        nums_length_fullname = float(request.form.get('nums_length_fullname'))
+        name_equals_username = float(request.form.get('name_equals_username'))
+        description_length = float(request.form.get('description_length'))
+        external_URL = float(request.form.get('external_URL'))
+        private = float(request.form.get('private'))
+        posts = float(request.form.get('posts'))
+        followers = float(request.form.get('followers'))
+
+        input_query = np.array([[nums_length_username, fullname_words, nums_length_fullname, name_equals_username, description_length, external_URL, private, posts, followers]])
+
+        result = model.predict(input_query)[0]
+
+        if result == 1:
+            return jsonify({'profile_pic': result})
+
+        return jsonify({'result': result})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello world"
+
+@app.route('/detect', methods=['POST'])
+def detect():
+    try:
+        # Load the machine learning model
+        model = pickle.load(open('model.pickle', 'rb'))  # Make sure 'model.pickle' is in the same directory as your script
+
+        # Get input data from the request
+        nums_length_username = float(request.form.get('nums_length_username'))
+        fullname_words = float(request.form.get('fullname_words'))
+        nums_length_fullname = float(request.form.get('nums_length_fullname'))
+        name_equals_username = float(request.form.get('name_equals_username'))
+        description_length = float(request.form.get('description_length'))
+        external_URL = float(request.form.get('external_URL'))
+        private = float(request.form.get('private'))
+        posts = float(request.form.get('posts'))
+        followers = float(request.form.get('followers'))
+
+        input_query = np.array([[nums_length_username, fullname_words, nums_length_fullname, name_equals_username, description_length, external_URL, private, posts, followers]])
+
+        result = model.predict(input_query)[0]
+
+        if result == 1:
+            return jsonify({'profile_pic': result})
+
+        return jsonify({'result': result})
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+

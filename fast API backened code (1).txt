@@ -1,0 +1,39 @@
+from fastapi import FastAPI
+import pickle
+import uvicorn
+import numpy
+import pandas as pd
+import sklearn
+import gzip
+
+with open('model.pickle', 'rb') as f:
+    u = pickle._Unpickler(f)
+    u.encoding = 'latin1'
+
+app = FastAPI()
+
+
+@app.post('/submit')
+async def submit(
+
+):
+    nums_length_username = ('nums_length_username')
+    fullname_words = ('fullname_words')
+    nums_length_fullname = ('nums_length_fullname')
+    name_equals_username = ('name_equals_username')
+    description_length = ('description_length')
+    external_URL = ('external_URL')
+    private = ('private')
+    posts = ('posts')
+    followers = ('followers')
+    
+    
+    
+    
+
+    return{
+
+     'nums_length_username: {}, fullname_words: {}, nums_length_fullname: {}, name_equals_username: {}, description_length: {}, external_URL: {}, private: {}, posts: {}, followers: {}'.format(nums_length_username,fullname_words,nums_length_fullname,name_equals_username,description_length,external_URL,private,posts,followers)
+    }
+if __name__ == '__main__':
+    uvicorn.run(app, host="localhost", port=8000)
